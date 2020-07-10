@@ -31,7 +31,9 @@ describe('/artists', () => {
       await expect(response.status).to.equal(201);
       await expect(response.body.name).to.equal('Tame Impala');
 
-      const insertedArtistRecords = await Artist.findByPk(response.body.id, { raw: true });
+      const insertedArtistRecords = await Artist.findByPk(response.body.id, {
+        raw: true,
+      });
       await expect(insertedArtistRecords.name).to.equal('Tame Impala');
       await expect(insertedArtistRecords.genre).to.equal('Rock');
     });
@@ -68,7 +70,7 @@ describe('/artists', () => {
     });
 
     describe('GET /artists/:artistId', () => {
-      xit('gets artist record by id', (done) => {
+      it('gets artist record by id', (done) => {
         const artist = artists[0];
         request(app)
           .get(`/artists/${artist.id}`)
@@ -80,7 +82,7 @@ describe('/artists', () => {
           });
       });
 
-      xit('returns a 404 if the artist does not exist', (done) => {
+      it('returns a 404 if the artist does not exist', (done) => {
         request(app)
           .get('/artists/12345')
           .then((res) => {
