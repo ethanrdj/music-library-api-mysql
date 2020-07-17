@@ -38,7 +38,7 @@ describe('/songs', () => {
   });
 
   describe('POST /album/:albumId/song', () => {
-    it('creates a new song under an album', (done) => {
+    xit('creates a new song under an album', (done) => {
       request(app)
         .post(`/album/${album.id}/song`)
         .send({
